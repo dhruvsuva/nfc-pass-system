@@ -14,10 +14,18 @@ const dbConfig = {
   queueLimit: 0,
   charset: 'utf8mb4',
   timezone: '+05:30', // Indian Standard Time (Kolkata timezone)
-  // Add connection options to help with hostname resolution
+  // Updated connection options for MySQL2 compatibility
   acquireTimeout: 60000,
   timeout: 60000,
-  reconnect: true
+  reconnect: true,
+  // Additional MySQL2 compatible options
+  supportBigNumbers: true,
+  bigNumberStrings: true,
+  dateStrings: true,
+  debug: false,
+  trace: false,
+  // SSL configuration for production
+  ssl: process.env.NODE_ENV === 'production' ? { rejectUnauthorized: false } : false
 };
 
 const connectDB = async () => {
