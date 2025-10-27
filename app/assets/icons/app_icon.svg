@@ -1,0 +1,39 @@
+<svg width="192" height="192" viewBox="0 0 192 192" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <!-- Background Circle -->
+  <circle cx="96" cy="96" r="96" fill="#2196F3"/>
+  
+  <!-- Gradient Overlay -->
+  <defs>
+    <linearGradient id="gradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#42A5F5;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#1976D2;stop-opacity:1" />
+    </linearGradient>
+  </defs>
+  <circle cx="96" cy="96" r="96" fill="url(#gradient)"/>
+  
+  <!-- NFC Symbol -->
+  <g transform="translate(96,96)">
+    <!-- Outer NFC waves -->
+    <path d="M -40 -40 Q -40 -60 -20 -60 Q 0 -60 20 -40 Q 40 -20 40 0 Q 40 20 20 40 Q 0 60 -20 60 Q -40 40 -40 20 Q -40 0 -40 -20 Z" 
+          fill="none" stroke="white" stroke-width="3" opacity="0.6"/>
+    
+    <!-- Middle NFC waves -->
+    <path d="M -25 -25 Q -25 -35 -15 -35 Q 0 -35 15 -25 Q 25 -15 25 0 Q 25 15 15 25 Q 0 35 -15 35 Q -25 25 -25 15 Q -25 0 -25 -15 Z" 
+          fill="none" stroke="white" stroke-width="3" opacity="0.8"/>
+    
+    <!-- Inner NFC core -->
+    <circle cx="0" cy="0" r="12" fill="white"/>
+    
+    <!-- Pass/Card representation -->
+    <rect x="-30" y="15" width="60" height="35" rx="4" fill="white" opacity="0.9"/>
+    <rect x="-25" y="20" width="50" height="3" rx="1.5" fill="#2196F3"/>
+    <rect x="-25" y="27" width="35" height="2" rx="1" fill="#2196F3" opacity="0.7"/>
+    <rect x="-25" y="32" width="25" height="2" rx="1" fill="#2196F3" opacity="0.5"/>
+    
+    <!-- Checkmark for verification -->
+    <path d="M 15 35 L 20 40 L 30 25" stroke="#4CAF50" stroke-width="3" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+  </g>
+  
+  <!-- App name text (optional, can be removed for cleaner look) -->
+  <text x="96" y="170" text-anchor="middle" fill="white" font-family="Arial, sans-serif" font-size="12" font-weight="bold" opacity="0.8">NFC PASS</text>
+</svg>
