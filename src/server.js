@@ -160,7 +160,11 @@ async function startServer() {
     if (process.env.SKIP_REDIS === 'true') {
       logger.warn('Skipping Redis connection as SKIP_REDIS=true');
     } else {
-      await connectRedis();
+      try {
+        await connectRedis();
+      } catch (redisError) {
+        logger.warn('Redis connection failed, continuing without Redis:', redisError.message);
+      }
     }
     
     // Start server
@@ -171,7 +175,10 @@ async function startServer() {
     });
   } catch (error) {
     logger.error('Failed to start server:', error);
-    process.exit(1);
+    // Don't exit in Vercel environment
+    if (process.env.VERCEL !== '1') {
+      process.exit(1);
+    }
   }
 }
 
@@ -196,5 +203,8 @@ process.on('SIGINT', () => {
 if (process.env.NODE_ENV !== 'test') {
   startServer();
 }
+
+// Export for Vercel
+module.exports = app;
 
 module.exports = { app, server, io, startServer };
