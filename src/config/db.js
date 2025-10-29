@@ -3,6 +3,16 @@ const logger = require('../utils/logger');
 
 let pool;
 
+// Use mock database for Vercel deployment
+const isVercel = process.env.VERCEL === '1' || process.env.NODE_ENV === 'production';
+const useMockDB = isVercel && (!process.env.DB_HOST || process.env.DB_HOST === 'localhost');
+
+if (useMockDB) {
+  logger.warn('Using mock database for Vercel deployment');
+  module.exports = require('./mock-db');
+  return;
+}
+
 const dbConfig = {
   host: process.env.DB_HOST || 'localhost',
   port: process.env.DB_PORT || 3306,

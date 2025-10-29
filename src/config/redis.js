@@ -3,6 +3,23 @@ const logger = require('../utils/logger');
 
 let redisClient;
 
+// Use mock Redis for Vercel deployment
+const isVercel = process.env.VERCEL === '1' || process.env.NODE_ENV === 'production';
+const useMockRedis = isVercel && (!process.env.REDIS_URL || process.env.REDIS_URL.includes('localhost'));
+
+if (useMockRedis) {
+  logger.warn('Using mock Redis for Vercel deployment');
+  module.exports = {
+    connectRedis: async () => {
+      logger.info('Mock Redis connected');
+      return mockRedis;
+    },
+    getRedisClient: () => mockRedis,
+    mockRedis
+  };
+  return;
+}
+
 const redisConfig = {
   url: process.env.REDIS_URL || 'redis://localhost:6379',
   password: process.env.REDIS_PASSWORD || undefined,
